@@ -11,13 +11,17 @@ class AlienInvasion:
         """初始化游戏并创建游戏资源"""
         pygame.init()
         self.settings = Settings()
-        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-        self.settings.screen_width = self.screen.get_rect().width
-        self.settings.screen_height = self.screen.get_rect().height
-        # self.screen = pygame.display.set_mode(
-        #     (self.settings.screen_width, self.settings.screen_height))
+        # 全屏模式
+        # self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        # self.settings.screen_width = self.screen.get_rect().width
+        # self.settings.screen_height = self.screen.get_rect().height
+        # 窗口模式
+        self.screen = pygame.display.set_mode(
+            (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")
         self.ship = Ship(self)
+        # 解决键盘字母输入导致程序卡死问题
+        pygame.key.stop_text_input()
 
     def run_game(self):
         """开始游戏的主循环"""
@@ -42,7 +46,7 @@ class AlienInvasion:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
-        elif event.key == pygame.K_ESCAPE:
+        elif event.key == pygame.K_q:
             sys.exit()
             # pygame.quit()
 

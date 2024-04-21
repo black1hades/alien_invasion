@@ -19,9 +19,12 @@ class Ship:
 
         # 在飞船的属性x中存储小数值
         self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
         # 移动标志
         self.moving_right = False
         self.moving_left = False
+        self.moving_up = False
+        self.moving_down = False
 
     def update(self):
         """根据移动标志调整飞船的位置"""
@@ -29,8 +32,14 @@ class Ship:
             self.x += self.settings.ship_speed
         if self.moving_left and self.rect.left > 0:
             self.x -= self.settings.ship_speed
+        if self.moving_up and self.rect.top > 0:
+            self.y -= self.settings.ship_speed
+        if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
+            self.y += self.settings.ship_speed
+
         # 根据self.x更新rect对象
         self.rect.x = self.x
+        self.rect.y = self.y
 
     def blitme(self):
         """在指定位置绘制飞船"""

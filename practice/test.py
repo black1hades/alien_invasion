@@ -1,5 +1,4 @@
 import sys
-
 import pygame
 
 pygame.init()
@@ -11,16 +10,9 @@ vector_rect.center = screen_rect.center
 vector_status = False
 while True:
     for event in pygame.event.get():
+        print(event)
         if event.type == pygame.QUIT:
             sys.exit()
-        elif event.type == pygame.KEYDOWN:
-            pass
-            # if event.key == pygame.K_RIGHT:
-            #
-            # elif event.key == pygame.K_LEFT:
-
-        elif event.type == pygame.KEYUP:
-            pass
 
     screen.fill("green")
     screen.blit(vector, vector_rect)

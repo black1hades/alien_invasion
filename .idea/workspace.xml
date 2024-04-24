@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e61356d-18bc-47a7-bcab-610494cc1fe9" name="变更" comment="新增:飞船射杀外星人(可移动)以及游戏结束模式">
-      <change afterPath="$PROJECT_DIR$/button.py" afterDir="false" />
+    <list default="true" id="5e61356d-18bc-47a7-bcab-610494cc1fe9" name="变更" comment="新增:Play按钮">
+      <change afterPath="$PROJECT_DIR$/scoreboard.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alien_invasion.py" beforeDir="false" afterPath="$PROJECT_DIR$/alien_invasion.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/game_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_stats.py" afterDir="false" />
@@ -189,7 +189,7 @@
       <workItem from="1713669749080" duration="9568000" />
       <workItem from="1713789916981" duration="2450000" />
       <workItem from="1713875608896" duration="8451000" />
-      <workItem from="1713962626580" duration="5193000" />
+      <workItem from="1713962626580" duration="8697000" />
     </task>
     <task id="LOCAL-00001" summary="修改练习文件路径">
       <created>1713628056185</created>
@@ -219,7 +219,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713887042882</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="新增:Play按钮">
+      <created>1713968318377</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1713968318377</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,11 +260,12 @@
     <MESSAGE value="新增:外星人群(行)" />
     <MESSAGE value="新增:外星人群(行+列)和练习2:星星" />
     <MESSAGE value="新增:飞船射杀外星人(可移动)以及游戏结束模式" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增:飞船射杀外星人(可移动)以及游戏结束模式" />
+    <MESSAGE value="新增:Play按钮" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增:Play按钮" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/alien_invasion$test__1_.coverage" NAME="test (1) 覆盖结果" MODIFIED="1713670783477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/practice" />
-    <SUITE FILE_PATH="coverage/alien_invasion$alien_invasion.coverage" NAME="alien_invasion 覆盖结果" MODIFIED="1713968160736" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/alien_invasion$alien_invasion.coverage" NAME="alien_invasion 覆盖结果" MODIFIED="1713971699169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/alien_invasion$button.coverage" NAME="button 覆盖结果" MODIFIED="1713964830322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/alien_invasion$test.coverage" NAME="test 覆盖结果" MODIFIED="1713627458630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/alien_invasion$ship.coverage" NAME="ship 覆盖结果" MODIFIED="1713623738689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

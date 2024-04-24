@@ -7,6 +7,7 @@ from bullet import Bullet
 from alien import Alien
 from game_stats import GameStats
 from button import Button
+from scoreboard import Scoreboard
 
 
 class AlienInvasion:
@@ -25,6 +26,8 @@ class AlienInvasion:
             (self.settings.screen_width, self.settings.screen_height))
         # 创建一个用于存储游戏统计信息的实例
         self.stats = GameStats(self)
+        # 创建计分板
+        self.sb = Scoreboard(self)
         pygame.display.set_caption("Alien Invasion")
         self.ship = Ship(self)
         # 创建存储子弹的编组
@@ -132,6 +135,9 @@ class AlienInvasion:
         # 如果是, 就删除相应的子弹和外星人
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
+        if collisions:
+            self.stats.score += self.settings.alien_points
+            self.sb.prep_score()
         if not self.aliens:
             # 删除现有的子弹并新建一群外星人
             self.bullets.empty()
@@ -183,7 +189,7 @@ class AlienInvasion:
         number_aliens_x = available_space_x // (2 * alien_width)
         # 计算屏幕可容纳多少行外星人
         ship_height = self.ship.rect.height
-        available_space_y = (self.settings.screen_height - (3 * alien_width) - ship_height)
+        available_space_y = (self.settings.screen_height - (5 * alien_width) - ship_height)
         number_rows = available_space_y // (2 * alien_height)
         # 创建外星人群
         for row_number in range(number_rows):
@@ -221,6 +227,8 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
+        # 显示得分
+        self.sb.show_score()
         # 如果游戏处于非活动状态, 就绘制Play按钮
         if not self.stats.game_active:
             self.play_button.draw_button()

@@ -8,6 +8,7 @@ from alien import Alien
 from game_stats import GameStats
 from button import Button
 from scoreboard import Scoreboard
+from random import randint
 
 
 class AlienInvasion:
@@ -68,6 +69,11 @@ class AlienInvasion:
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.stats.game_active:
             self._start_game()
+            # 重置游戏统计数据
+            self.stats.reset_stats()
+            self.sb.prep_score()
+            self.sb.prep_level()
+            self.sb.prep_ship()
 
     def _start_game(self):
         # 重置游戏统计信息
@@ -101,6 +107,11 @@ class AlienInvasion:
         elif event.key == pygame.K_p:
             if not self.stats.game_active:
                 self._start_game()
+                # 重置游戏统计数据
+                self.stats.reset_stats()
+                self.sb.prep_score()
+                self.sb.prep_level()
+                self.sb.prep_ship()
 
     def _check_keyup_events(self, event):
         """响应松开"""
@@ -136,13 +147,18 @@ class AlienInvasion:
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
         if collisions:
-            self.stats.score += self.settings.alien_points
-            self.sb.prep_score()
+            for aliens in collisions.values():
+                self.stats.score += self.settings.alien_points * len(aliens)
+                self.sb.prep_score()
+                self.sb.check_high_score()
         if not self.aliens:
             # 删除现有的子弹并新建一群外星人
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+            # 提升等级
+            self.stats.level += 1
+            self.sb.prep_level()
 
     def _update_aliens(self):
         """检查是否有外星人位于屏幕边缘, 并更新整群外星人的位置"""
@@ -158,6 +174,7 @@ class AlienInvasion:
         if self.stats.ships_left > 0:
             # 将ships_left减1
             self.stats.ships_left -= 1
+            self.sb.prep_ship()
             # 清空余下的外星人和子弹
             self.aliens.empty()
             self.bullets.empty()
@@ -187,10 +204,12 @@ class AlienInvasion:
         alien_width, alien_height = alien.rect.size
         available_space_x = self.settings.screen_width - (2 * alien_width)
         number_aliens_x = available_space_x // (2 * alien_width)
+        number_aliens_x = randint(self.settings.alien_rate, number_aliens_x)
         # 计算屏幕可容纳多少行外星人
         ship_height = self.ship.rect.height
         available_space_y = (self.settings.screen_height - (5 * alien_width) - ship_height)
         number_rows = available_space_y // (2 * alien_height)
+        number_rows = randint(1, number_rows)
         # 创建外星人群
         for row_number in range(number_rows):
             for alien_number in range(number_aliens_x):
@@ -224,11 +243,13 @@ class AlienInvasion:
         # 每次循环时都能重绘屏幕
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
+
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
         # 显示得分
         self.sb.show_score()
+
         # 如果游戏处于非活动状态, 就绘制Play按钮
         if not self.stats.game_active:
             self.play_button.draw_button()
